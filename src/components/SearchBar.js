@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
+import { geminiResponse } from "../ai/api-interface"
 
 function SearchBar({onSearch}) {
   const [query, setQuery] = useState('');
@@ -10,7 +11,17 @@ function SearchBar({onSearch}) {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-        onSearch(query);
+
+        function getResponse(query) {
+          
+          const ai = geminiResponse(query)
+          onSearch(ai);
+
+        }
+
+        getResponse(query)
+
+        
         setQuery('');
     }
   };
