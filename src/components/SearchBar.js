@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 
-function SearchBar() {
+function SearchBar({onSearch}) {
   const [query, setQuery] = useState('');
-  const [searchedQuery, setSearchedQuery] = useState('');
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -11,7 +10,7 @@ function SearchBar() {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      setSearchedQuery(query);
+        onSearch(query);
     }
   };
 
@@ -25,13 +24,6 @@ function SearchBar() {
         onKeyDown={handleKeyDown}
         className="search-input"
       />
-      
-      {/* Show the searched query when Enter is pressed */}
-      {searchedQuery && (
-        <div className="search-result">
-          <h2>Search Results for: {searchedQuery}</h2>
-        </div>
-      )}
     </div>
   );
 }
