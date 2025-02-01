@@ -9,13 +9,13 @@
 }
 
 .App-header {
-  min-height: 20vh; /* Adjusted for a larger header */
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(40px + 2vmin);
-  color: #4CAF50; /* Green color for a recycling vibe */
-  font-family: 'Poppins', sans-serif; /* A clean, modern font */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for better readability */
+  color: #4CAF50;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }

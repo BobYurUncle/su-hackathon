@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SearchBar.css';
 
-function SearchBar({onSearch}) {
-  const [query, setQuery] = useState('');
-
+function SearchBar({ onSearch, query, setQuery }) {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-        onSearch(query);
-        setQuery('');
+      onSearch(query);
+      setQuery('');
     }
   };
 
