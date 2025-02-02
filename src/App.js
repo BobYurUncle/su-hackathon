@@ -7,6 +7,7 @@ import CustomWebcam from './webcam';
 
 function App() {
   const [searchedQuery, setSearchedQuery] = useState('');
+  const [query, setQuery] = useState('');
 
   const handleSearchQuery = (query) => {
     setSearchedQuery(query);
@@ -16,8 +17,9 @@ function App() {
     <div className="App">
       <header className="App-header">Recycle Me</header>
       <CustomWebcam />
-      <SearchBar onSearch={handleSearchQuery}/>
-      <Result query={searchedQuery}/>
+      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearchQuery} />
+      <Result query={searchedQuery} />
+
     </div>
   );
 }

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .result {
+    display: flex;
+    border-color: black;
+    border-width: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  
+    width: 1000px;
+    background-color: #EFF1F3;
+    color: #223843;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #223843;
+    text-align: center;
+    line-height: 1.5;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  
+  
