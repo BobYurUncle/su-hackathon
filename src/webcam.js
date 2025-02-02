@@ -65,7 +65,7 @@ const CustomWebcam = ({onSearch}) => {
 
       const imageSrc = webcamRef.current.getScreenshot();
       if (imageSrc) {
-        const resizedFile = await resizeImage(imageSrc, 500); // Adjust dimensions if needed
+        const resizedFile = await resizeImage(imageSrc, 400); // Adjust dimensions if needed
         const fileUrl = URL.createObjectURL(resizedFile);
         setImgSrc(fileUrl);
         setDownloadUrl(fileUrl);
@@ -87,7 +87,7 @@ const CustomWebcam = ({onSearch}) => {
         <img src={imgSrc} alt="Captured Screenshot" style={{ width: "max-width", height: "max-height", borderRadius: "8px" }} />
       ) : (
         <Webcam 
-            style={{ width: "500px", height: "max-height", borderRadius: "8px", transform: "scaleX(-1)", WebkitTransform: "scaleX(-1)" }} 
+            style={{ width: "400px", height: "max-height", borderRadius: "8px", transform: "scaleX(-1)", WebkitTransform: "scaleX(-1)" }} 
             ref={webcamRef} 
             screenshotFormat="image/jpeg" 
         />
@@ -97,11 +97,6 @@ const CustomWebcam = ({onSearch}) => {
         {imgSrc ? (
           <>
             <button onClick={retake} style={buttonStyle}>Retake</button>
-            {downloadUrl && (
-              <a href={downloadUrl} download="resized_screenshot.jpeg">
-                <button style={buttonStyle}>Download</button>
-              </a>
-            )}
           </>
         ) : (
           <button onClick={capture} style={buttonStyle}>Capture</button>
@@ -118,7 +113,7 @@ const buttonStyle = {
   cursor: "pointer",
   border: "none",
   borderRadius: "5px",
-  backgroundColor: "#007bff",
+  backgroundColor: "#4e33d4",
   color: "white",
 };
 

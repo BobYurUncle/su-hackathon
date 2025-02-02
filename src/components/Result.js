@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Result.css';
 
 function Result({ query }) {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+  }, [query]);
+    
     return (
       <div className="result">
         {query ? ( 

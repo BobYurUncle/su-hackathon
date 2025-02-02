@@ -14,19 +14,18 @@
     border-width: 10px;
     justify-content: center;
     align-items: center;
+    text-align: left;
     height: 400px;
-  
-    width: 1000px;
-    background-color: #EFF1F3;
+    width: 100vw;
+    background-color: #0D0630;
     color: #223843;
     padding: 20px;
-    border-radius: 10px;
   }
   
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #223843;
+    color: #F0F4F7;
     text-align: center;
     line-height: 1.5;
     max-width: 80%;

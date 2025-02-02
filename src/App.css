@@ -1,7 +1,13 @@
+html, body {
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+}
+
 .App {
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   flex-direction: column;
@@ -10,14 +16,28 @@
 
 .App-header {
   min-height: 20vh;
+  padding: 10px;
   display: flex;
+  font-weight: 800;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(40px + 2vmin);
-  color: #6697a6;
-  font-family: 'Poppins', sans-serif;
+  color: #4e33d4;
+  font-family: 'arial', sans-serif;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.8; /* Optional: add transparency to layers */
 }
 
 .spinning-logo {

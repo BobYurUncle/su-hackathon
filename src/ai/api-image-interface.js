@@ -6,7 +6,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const formatPrompt = (object) => {
-    return `"${object}" - In which garbage color should this be disposed of?`;
+    return `"${object}" - In which garbage color should this be disposed of? Requirements: Your response MUST be less than 225 characters and MORE than 114 characters.`;
 };
 
 const geminiImageResponse = async (file) => {
