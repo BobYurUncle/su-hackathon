@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
 
 
 const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`
@@ -8,13 +10,12 @@ const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-
 const geminiResponse = async (prompt) => {
     console.log(API_KEY)
     try {
-        const response = await axios.post(`${URL}?key=${API_KEY}`, {
-            contents: [{ parts: [{ text: prompt }] }]
-        });
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        console.log(response.data.candidates[0]?.content?.parts[0]?.text)
-
-        return response.data.candidates[0]?.content?.parts[0]?.text || 'No response received.';
+        const result = await model.generateContent(prompt);
+        console.log(result.response.text());
+        return console.log(result.response.text());
     }   catch (error) {
         console.error('Gemini API Error:', error);
         return 'Error fetching response.';

@@ -15,7 +15,7 @@ function SearchBar({onSearch}) {
         function getResponse(query) {
           
           const ai = geminiResponse(query)
-          onSearch(ai);
+          
 
         }
 
