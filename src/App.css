@@ -19,3 +19,16 @@
   font-family: 'Poppins', sans-serif;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.spinning-logo {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 100px;
+  height: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.spinning-logo:hover {
+  transform: scale(1.2);
+}
