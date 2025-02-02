@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SearchBar.css';
 import { geminiResponse } from "../ai/api-interface"
 
-function SearchBar({onSearch}) {
-  const [query, setQuery] = useState('');
-
+function SearchBar({ onSearch, query, setQuery }) {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && query.trim() !== '') {
 
         function getResponse(query) {
           
           const ai = geminiResponse(query)
-          
+          onSearch(ai);
 
         }
 
@@ -23,6 +21,7 @@ function SearchBar({onSearch}) {
 
         
         setQuery('');
+
     }
   };
 
