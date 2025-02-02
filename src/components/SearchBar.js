@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import './SearchBar.css';
 import { geminiResponse } from "../ai/api-interface"
 
-function SearchBar({ onSearch, query, setQuery }) {
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+const SearchBar = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
+  const [triggerSearch, setTriggerSearch] = useState(false); // New state to trigger search
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
+  // This useEffect will run when triggerSearch is true (i.e., when Enter is pressed)
+  useEffect(() => {
+    if (triggerSearch && query.trim() !== '') {
+      async function getResponse() {
+        const ai = await geminiResponse(query);
+        console.log("query" + query)
+        onSearch(ai);
+        setQuery('');  // Set the new AI response as query
+        console.log('here ' + ai);
+      }
+      getResponse();
+      setTriggerSearch(false); // Reset the trigger after search
+    }
+  }, [triggerSearch, query, onSearch]);  // Dependency array ensures it reacts to changes in triggerSearch and query
+
+  // Event handler for keydown
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && query.trim() !== '') {
-
-        function getResponse(query) {
-          
-          const ai = geminiResponse(query)
-          onSearch(ai);
-
-        }
-
-        getResponse(query)
-
-        
-        setQuery('');
-
+      setTriggerSearch(true);  // Trigger the useEffect to run
     }
   };
 
@@ -31,7 +35,7 @@ function SearchBar({ onSearch, query, setQuery }) {
         type="text"
         placeholder="Search..."
         value={query}
-        onChange={handleChange}
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         className="search-input"
       />
