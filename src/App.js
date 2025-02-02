@@ -18,17 +18,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">Recycle Me</header>
-<<<<<<< HEAD
-      <CustomWebcam onSearch={handleSearchQuery}/>
-=======
+
       <img src={Recycle} alt="Recycling Symbol" className="spinning-logo" style={{position: 'absolute',
         top: '25px',
         left: '25px',
         width: '100px',
         height: '100px'
       }}/>
-      <CustomWebcam />
->>>>>>> 1d3d39683c641500e26287a0019dacc47256bc16
+      <CustomWebcam onSearch={handleSearchQuery}/>
       <SearchBar query={query} setQuery={setQuery} onSearch={handleSearchQuery} />
       <Result query={searchedQuery} />
 
