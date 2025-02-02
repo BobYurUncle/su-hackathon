@@ -7,7 +7,7 @@ function Result({ query }) {
         {query ? ( 
           <h2>{query}</h2>
         ) : (
-          <h2>No results to display</h2>
+          <h2>Ask me anything</h2>
         )}
       </div>
     );
