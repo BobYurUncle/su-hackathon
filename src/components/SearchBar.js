@@ -7,7 +7,7 @@ function SearchBar({ onSearch, query, setQuery }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && query.trim() !== '') {
       onSearch(query);
       setQuery('');
     }

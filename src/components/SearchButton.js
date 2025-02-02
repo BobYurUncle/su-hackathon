@@ -8,7 +8,7 @@ function SearchButton({ onSearch, query, setQuery}) {
   };
 
   return (
-    <button onClick={handleSearch} className="search-button">
+    <button onClick={handleSearch} className="search-button" disabled={!query}>
       Search
     </button>
   );
