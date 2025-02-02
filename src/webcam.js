@@ -30,10 +30,10 @@ const CustomWebcam = () => {
           // Convert to Blob and create a downloadable file
           canvas.toBlob((blob) => {
             if (blob) {
-              const resizedFile = new File([blob], "resized_screenshot.png", { type: "image/png" });
+              const resizedFile = new File([blob], "resized_screenshot.jpeg", { type: "image/jpeg" });
               resolve(resizedFile);
             }
-          }, "image/png");
+          }, "image/jpeg");
         };
       });
     };
@@ -66,7 +66,7 @@ const CustomWebcam = () => {
         <Webcam 
             style={{ width: "500px", height: "max-height", borderRadius: "8px", transform: "scaleX(-1)", WebkitTransform: "scaleX(-1)" }} 
             ref={webcamRef} 
-            screenshotFormat="image/png" 
+            screenshotFormat="image/jpeg" 
         />
       )}
 
@@ -75,7 +75,7 @@ const CustomWebcam = () => {
           <>
             <button onClick={retake} style={buttonStyle}>Retake</button>
             {downloadUrl && (
-              <a href={downloadUrl} download="resized_screenshot.png">
+              <a href={downloadUrl} download="resized_screenshot.jpeg">
                 <button style={buttonStyle}>Download</button>
               </a>
             )}
