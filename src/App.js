@@ -3,8 +3,11 @@ import './App.css';
 import SearchBar from './components/SearchBar.js';
 import Result from './components/Result.js';
 
+import CustomWebcam from './webcam';
+
 function App() {
   const [searchedQuery, setSearchedQuery] = useState('');
+  const [query, setQuery] = useState('');
 
   const handleSearchQuery = (query) => {
     setSearchedQuery(query);
@@ -13,8 +16,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">Recycle Me</header>
-      <SearchBar onSearch={handleSearchQuery}/>
-      <Result query={searchedQuery}/>
+      <CustomWebcam />
+      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearchQuery} />
+      <Result query={searchedQuery} />
+
     </div>
   );
 }

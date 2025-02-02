@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchBar.css';
+import { geminiResponse } from "../ai/api-interface"
 
-function SearchBar({onSearch}) {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
+  const [triggerSearch, setTriggerSearch] = useState(false);
 
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+  useEffect(() => {
+    if (triggerSearch && query.trim() !== '') {
+      async function getResponse() {
+        const ai = await geminiResponse(query);
+        console.log("query" + query)
+        onSearch(ai);
+        setQuery('');
+        console.log('here ' + ai);
+      }
+      getResponse();
+      setTriggerSearch(false);
+    }
+  }, [triggerSearch, query, onSearch]);
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-        onSearch(query);
-        setQuery('');
+    if (e.key === 'Enter' && query.trim() !== '') {
+      setTriggerSearch(true);
     }
   };
 
@@ -19,9 +30,9 @@ function SearchBar({onSearch}) {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Search an object to throw away..."
         value={query}
-        onChange={handleChange}
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         className="search-input"
       />
