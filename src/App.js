@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">Recycle Me</header>
-      <CustomWebcam />
+      <CustomWebcam onSearch={handleSearchQuery}/>
       <SearchBar query={query} setQuery={setQuery} onSearch={handleSearchQuery} />
       <Result query={searchedQuery} />
 

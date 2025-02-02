@@ -1,12 +1,28 @@
 import Webcam from "react-webcam";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import { geminiImageResponse } from "./ai/api-image-interface";
 
-const CustomWebcam = () => {
+const CustomWebcam = ({onSearch}) => {
     const webcamRef = useRef(null);
     const [imgSrc, setImgSrc] = useState(null);
     const [downloadUrl, setDownloadUrl] = useState(null);
+
+    const [img64, setimg64] = useState('');
+    const [triggerSearch, setTriggerSearch] = useState(false);
+
+    useEffect(() => {
+      if (triggerSearch) {
+        async function getResponse() {
+          const ai = await geminiImageResponse(img64);
+          onSearch(ai);
+          setimg64('');
+        }
+        getResponse();
+        setTriggerSearch(false);
+      }
+      }, [triggerSearch, img64, onSearch]);
   
+
     // Function to resize while keeping aspect ratio
     const resizeImage = (imageSrc, maxWidth) => {
     return new Promise((resolve) => {
@@ -29,8 +45,8 @@ const CustomWebcam = () => {
           ctx.drawImage(img, 0, 0, newWidth, newHeight);
           
           const base64 = canvas.toDataURL()
-          geminiImageResponse(base64)
-
+          setimg64(base64)
+          setTriggerSearch(true)
   
           // Convert to Blob and create a downloadable file
           canvas.toBlob((blob) => {
@@ -53,6 +69,7 @@ const CustomWebcam = () => {
         const fileUrl = URL.createObjectURL(resizedFile);
         setImgSrc(fileUrl);
         setDownloadUrl(fileUrl);
+        console.log(resizedFile)
 
       }
     }

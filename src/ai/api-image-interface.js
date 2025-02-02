@@ -32,6 +32,7 @@ const geminiImageResponse = async (file) => {
 
         const result = await model.generateContent([prompt, imagePart]);
         console.log(result.response.text())
+        return(result.response.text())
 
     } catch (error) {
         console.error('Gemini API Error:', error);
