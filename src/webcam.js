@@ -1,5 +1,6 @@
 import Webcam from "react-webcam";
 import { useCallback, useRef, useState } from "react";
+import { geminiImageResponse } from "./ai/api-image-interface";
 
 const CustomWebcam = () => {
     const webcamRef = useRef(null);
@@ -26,6 +27,10 @@ const CustomWebcam = () => {
           ctx.translate(newWidth, 0);
           ctx.scale(-1, 1);
           ctx.drawImage(img, 0, 0, newWidth, newHeight);
+          
+          const base64 = canvas.toDataURL()
+          geminiImageResponse(base64)
+
   
           // Convert to Blob and create a downloadable file
           canvas.toBlob((blob) => {
@@ -48,6 +53,7 @@ const CustomWebcam = () => {
         const fileUrl = URL.createObjectURL(resizedFile);
         setImgSrc(fileUrl);
         setDownloadUrl(fileUrl);
+
       }
     }
   }, [webcamRef]);
